@@ -68,7 +68,7 @@
 
     <script>
         async function calcularResultados() {
-            const response = await fetch('https://<tu-dominio>/resultados');
+            const response = await fetch('/resultados');
             const resultados = await response.json();
 
             const totalVotos = resultados.reduce((sum, r) => sum + r.votos, 0);
