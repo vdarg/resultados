@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargar Votos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Cargar Votos</h2>
+        <input type="number" id="votosFNR" placeholder="Votos Fuerza Nacional Republicana (Verde)">
+        <input type="number" id="votosFP" placeholder="Votos Frente del Pueblo (Rojo)">
+        <input type="number" id="votosAN" placeholder="Votos Alianza Nueva (Azul)">
+        <input type="number" id="votosNP" placeholder="Votos Nuevo Pais (Naranja)">
+        <input type="number" id="votosV" placeholder="Votos Venceremos (Violeta)">
+        <button onclick="guardarVotos()">Guardar Votos</button>
+    </div>
+
+    <script>
+        async function guardarVotos() {
+            const resultados = [
+                { partido: 'Fuerza Nacional Republicana', votos: parseInt(document.getElementById('votosFNR').value) || 0, porcentaje: 0, color: 'FNR' },
+                { partido: 'Frente del Pueblo', votos: parseInt(document.getElementById('votosFP').value) || 0, porcentaje: 0, color: 'FP' },
+                { partido: 'Alianza Nueva', votos: parseInt(document.getElementById('votosAN').value) || 0, porcentaje: 0, color: 'AN' },
+                { partido: 'Nuevo Pais', votos: parseInt(document.getElementById('votosNP').value) || 0, porcentaje: 0, color: 'NP' },
+                { partido: 'Venceremos', votos: parseInt(document.getElementById('votosV').value) || 0, porcentaje: 0, color: 'V' }
+            ];
+
+            await fetch('https://<tu-dominio>/resultados', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(resultados)
+            });
+
+            alert('Votos guardados exitosamente');
+        }
+    </script>
+</body>
+</html>
