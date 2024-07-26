@@ -67,7 +67,7 @@
                 { partido: 'Venceremos', votos: parseInt(document.getElementById('votosV').value) || 0, porcentaje: 0, color: 'V' }
             ];
 
-            await fetch('/resultados', {
+            await fetch('https://resultados-mu.vercel.app/resultados', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(resultados)
