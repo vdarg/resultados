@@ -67,7 +67,7 @@
                 { partido: 'Venceremos', votos: parseInt(document.getElementById('votosV').value) || 0, porcentaje: 0, color: 'V' }
             ];
 
-            await fetch('https://<tu-dominio>/resultados', {
+            await fetch('/resultados', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(resultados)
